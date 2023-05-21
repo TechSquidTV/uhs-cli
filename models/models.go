@@ -4,6 +4,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services"
 	"github.com/techsquidtv/uhs-cli/models/services/plex"
 	"github.com/techsquidtv/uhs-cli/models/services/qbittorrent"
+	"github.com/techsquidtv/uhs-cli/models/services/sonarr"
 )
 
 type UHSConfig struct {
@@ -13,11 +14,13 @@ type UHSConfig struct {
 func DefaultServiceConfig() services.ServicesConfig {
 	config := make(services.ServicesConfig)
 
-	// Qbittorrent
 	qbt := &qbittorrent.Qbittorrent{}
 	plex := &plex.Plex{}
+	sonarr := &sonarr.Sonarr{}
+
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
+	config["sonarr"] = sonarr.Default()
 
 	return config
 }
