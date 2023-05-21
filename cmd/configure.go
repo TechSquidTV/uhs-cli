@@ -5,13 +5,12 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
+	"github.com/techsquidtv/uhs-cli/cmd/common"
 	"github.com/techsquidtv/uhs-cli/models"
 	"github.com/techsquidtv/uhs-cli/models/services"
-	"gopkg.in/yaml.v3"
 )
 
 // configureCmd represents the configure command
@@ -63,28 +62,17 @@ var configureCmd = &cobra.Command{
 			config := service.Configure()
 			uhsConfig.Services[serviceName] = config
 		}
-		// Convert uhsConfig struct to yaml
-		yamlConfig, err := yaml.Marshal(&uhsConfig)
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
+		// Output
 		outputFile, err := cmd.Flags().GetString("output")
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
-		if outputFile == "" {
-			fmt.Println(string(yamlConfig))
-		} else {
-			err = os.WriteFile(outputFile, yamlConfig, 0644)
-			if err != nil {
-				fmt.Println(err.Error())
-				return
-			}
-			fmt.Println("Configuration complete! Your configuration file has been saved to " + outputFile + ".")
+		err = common.Output(outputFile, &uhsConfig)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
 		}
-
 	},
 }
 
