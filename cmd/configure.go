@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
@@ -49,11 +50,15 @@ var configureCmd = &cobra.Command{
 			Message: fmt.Sprintf("You have selected the following services:\n%v\n Is this correct?", serviceListString),
 		}
 		var validateSelection bool
-		survey.AskOne(validateSelectionPrompt, &validateSelection)
+		err = survey.AskOne(validateSelectionPrompt, &validateSelection)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
 		// If selection is not valid, exit
 		if !validateSelection {
 			fmt.Println("Exiting...")
-			return
+			os.Exit(0)
 		}
 		// Execute configuration for each selected service
 		for _, serviceName := range selectedServices {
