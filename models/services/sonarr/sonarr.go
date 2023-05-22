@@ -13,9 +13,9 @@ type Sonarr struct {
 }
 
 type SonarrOptions struct {
-	Config string `yaml:"config"`
+	Config    string `yaml:"config"`
 	Downloads string `yaml:"downloads"`
-	Tv string `yaml:"tv"`
+	Tv        string `yaml:"tv"`
 }
 
 // Return default values for service
@@ -36,9 +36,9 @@ func (s *Sonarr) Default() services.ServiceInterface {
 			},
 		},
 		SonarrOptions: SonarrOptions{
-			Config:  "/opt/sonarr/config",
+			Config:    "/opt/sonarr/config",
 			Downloads: "~/downloads",
-			Tv: "/opt/sonarr/tv",
+			Tv:        "/opt/sonarr/tv",
 		},
 	}
 	return p
