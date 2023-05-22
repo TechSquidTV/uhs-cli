@@ -6,6 +6,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/cloudflared"
 	"github.com/techsquidtv/uhs-cli/models/services/overseerr"
 	"github.com/techsquidtv/uhs-cli/models/services/plex"
+	"github.com/techsquidtv/uhs-cli/models/services/prowlarr"
 	"github.com/techsquidtv/uhs-cli/models/services/qbittorrent"
 	"github.com/techsquidtv/uhs-cli/models/services/radarr"
 	"github.com/techsquidtv/uhs-cli/models/services/sabnzbd"
@@ -27,6 +28,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	cloudflared := &cloudflared.Cloudflared{}
 	overseerr := &overseerr.Overseerr{}
 	autobrr := &autobrr.Autobrr{}
+	prowlarr := &prowlarr.Prowlarr{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
@@ -36,6 +38,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	config["cloudflared"] = cloudflared.Default()
 	config["overseerr"] = overseerr.Default()
 	config["autobrr"] = autobrr.Default()
+	config["prowlarr"] = prowlarr.Default()
 
 	return config
 }
