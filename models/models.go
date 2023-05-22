@@ -7,6 +7,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/gotify"
 	"github.com/techsquidtv/uhs-cli/models/services/kavita"
 	"github.com/techsquidtv/uhs-cli/models/services/overseerr"
+	"github.com/techsquidtv/uhs-cli/models/services/playwright"
 	"github.com/techsquidtv/uhs-cli/models/services/plex"
 	"github.com/techsquidtv/uhs-cli/models/services/prowlarr"
 	"github.com/techsquidtv/uhs-cli/models/services/qbittorrent"
@@ -35,6 +36,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	kavita := &kavita.Kavita{}
 	gotify := &gotify.Gotify{}
 	tautulli := &tautulli.Tautulli{}
+	playwright := &playwright.Playwright{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
@@ -48,6 +50,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	config["kavita"] = kavita.Default()
 	config["gotify"] = gotify.Default()
 	config["tautulli"] = tautulli.Default()
+	config["playwright"] = playwright.Default()
 
 	return config
 }
