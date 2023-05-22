@@ -4,6 +4,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services"
 	"github.com/techsquidtv/uhs-cli/models/services/autobrr"
 	"github.com/techsquidtv/uhs-cli/models/services/cloudflared"
+	"github.com/techsquidtv/uhs-cli/models/services/gotify"
 	"github.com/techsquidtv/uhs-cli/models/services/kavita"
 	"github.com/techsquidtv/uhs-cli/models/services/overseerr"
 	"github.com/techsquidtv/uhs-cli/models/services/plex"
@@ -31,6 +32,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	autobrr := &autobrr.Autobrr{}
 	prowlarr := &prowlarr.Prowlarr{}
 	kavita := &kavita.Kavita{}
+	gotify := &gotify.Gotify{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
@@ -42,6 +44,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	config["autobrr"] = autobrr.Default()
 	config["prowlarr"] = prowlarr.Default()
 	config["kavita"] = kavita.Default()
+	config["gotify"] = gotify.Default()
 
 	return config
 }
