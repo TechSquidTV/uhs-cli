@@ -13,6 +13,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/radarr"
 	"github.com/techsquidtv/uhs-cli/models/services/sabnzbd"
 	"github.com/techsquidtv/uhs-cli/models/services/sonarr"
+	"github.com/techsquidtv/uhs-cli/models/services/tautulli"
 )
 
 type UHSConfig struct {
@@ -33,6 +34,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	prowlarr := &prowlarr.Prowlarr{}
 	kavita := &kavita.Kavita{}
 	gotify := &gotify.Gotify{}
+	tautulli := &tautulli.Tautulli{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
@@ -45,6 +47,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	config["prowlarr"] = prowlarr.Default()
 	config["kavita"] = kavita.Default()
 	config["gotify"] = gotify.Default()
+	config["tautulli"] = tautulli.Default()
 
 	return config
 }
