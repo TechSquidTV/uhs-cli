@@ -13,9 +13,9 @@ type Radarr struct {
 }
 
 type RadarrOptions struct {
-	Config string `yaml:"config"`
+	Config    string `yaml:"config"`
 	Downloads string `yaml:"downloads"`
-	Movie string `yaml:"tv"`
+	Movie     string `yaml:"tv"`
 }
 
 // Return default values for service
@@ -36,9 +36,9 @@ func (s *Radarr) Default() services.ServiceInterface {
 			},
 		},
 		RadarrOptions: RadarrOptions{
-			Config:  "/opt/radarr/config",
+			Config:    "/opt/radarr/config",
 			Downloads: "~/downloads",
-			Movie: "/opt/radarr/tv",
+			Movie:     "/opt/radarr/tv",
 		},
 	}
 	return p

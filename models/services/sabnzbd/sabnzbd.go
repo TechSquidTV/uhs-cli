@@ -8,8 +8,8 @@ import (
 )
 
 type Sabnzbd struct {
-	services.Service   `yaml:",inline"`
-	SabnzbdOptions `yaml:",inline"`
+	services.Service `yaml:",inline"`
+	SabnzbdOptions   `yaml:",inline"`
 }
 
 type SabnzbdOptions struct {
@@ -32,7 +32,7 @@ func (s *Sabnzbd) Default() services.ServiceInterface {
 				PullPolicy: "IfNotPresent",
 			},
 			Ports: services.Ports{
-				Http:   &http,
+				Http: &http,
 			},
 		},
 		SabnzbdOptions: SabnzbdOptions{
