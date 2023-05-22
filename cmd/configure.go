@@ -41,6 +41,10 @@ var configureCmd = &cobra.Command{
 			return
 		}
 		// Validate selected services
+		if len(selectedServices) == 0 {
+			fmt.Println("No services selected. Exiting...")
+			os.Exit(0)
+		}
 		serviceListString := ""
 		for _, service := range selectedServices {
 			serviceListString += fmt.Sprintf("  - %v\n", service)
