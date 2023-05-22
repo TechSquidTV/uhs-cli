@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/techsquidtv/uhs-cli/models/services"
+	"github.com/techsquidtv/uhs-cli/models/services/cloudflared"
 	"github.com/techsquidtv/uhs-cli/models/services/plex"
 	"github.com/techsquidtv/uhs-cli/models/services/qbittorrent"
 	"github.com/techsquidtv/uhs-cli/models/services/radarr"
@@ -21,12 +22,14 @@ func DefaultServiceConfig() services.ServicesConfig {
 	sonarr := &sonarr.Sonarr{}
 	radarr := &radarr.Radarr{}
 	sabnzbd := &sabnzbd.Sabnzbd{}
+	cloudflared := &cloudflared.Cloudflared{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
 	config["sonarr"] = sonarr.Default()
 	config["radarr"] = radarr.Default()
 	config["sabnzbd"] = sabnzbd.Default()
+	config["cloudflared"] = cloudflared.Default()
 
 	return config
 }
