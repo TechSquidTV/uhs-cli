@@ -9,11 +9,11 @@ import (
 
 type Prowlarr struct {
 	services.Service `yaml:",inline"`
-	ProwlarrOptions      `yaml:",inline"`
+	ProwlarrOptions  `yaml:",inline"`
 }
 
 type ProwlarrOptions struct {
-	Config  string `yaml:"config"`
+	Config string `yaml:"config"`
 }
 
 // Return default values for service
@@ -34,7 +34,7 @@ func (s *Prowlarr) Default() services.ServiceInterface {
 			},
 		},
 		ProwlarrOptions: ProwlarrOptions{
-			Config:  "/opt/prowlarr/config",
+			Config: "/opt/prowlarr/config",
 		},
 	}
 	return p

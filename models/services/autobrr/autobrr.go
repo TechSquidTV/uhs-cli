@@ -9,11 +9,11 @@ import (
 
 type Autobrr struct {
 	services.Service `yaml:",inline"`
-	AutobrrOptions    `yaml:",inline"`
+	AutobrrOptions   `yaml:",inline"`
 }
 
 type AutobrrOptions struct {
-	Config    string `yaml:"config"`
+	Config string `yaml:"config"`
 }
 
 // Return default values for service
@@ -34,7 +34,7 @@ func (s *Autobrr) Default() services.ServiceInterface {
 			},
 		},
 		AutobrrOptions: AutobrrOptions{
-			Config:    "/opt/autobrr/config",
+			Config: "/opt/autobrr/config",
 		},
 	}
 	return p
