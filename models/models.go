@@ -5,6 +5,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/plex"
 	"github.com/techsquidtv/uhs-cli/models/services/qbittorrent"
 	"github.com/techsquidtv/uhs-cli/models/services/radarr"
+	"github.com/techsquidtv/uhs-cli/models/services/sabnzbd"
 	"github.com/techsquidtv/uhs-cli/models/services/sonarr"
 )
 
@@ -19,11 +20,13 @@ func DefaultServiceConfig() services.ServicesConfig {
 	plex := &plex.Plex{}
 	sonarr := &sonarr.Sonarr{}
 	radarr := &radarr.Radarr{}
+	sabnzbd := &sabnzbd.Sabnzbd{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
 	config["sonarr"] = sonarr.Default()
 	config["radarr"] = radarr.Default()
+	config["sabnzbd"] = sabnzbd.Default()
 
 	return config
 }
