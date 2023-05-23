@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/techsquidtv/uhs-cli/models/services"
+	"github.com/techsquidtv/uhs-cli/models/services/apprise"
 	"github.com/techsquidtv/uhs-cli/models/services/autobrr"
 	"github.com/techsquidtv/uhs-cli/models/services/cloudflared"
 	"github.com/techsquidtv/uhs-cli/models/services/gotify"
@@ -39,6 +40,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	tautulli := &tautulli.Tautulli{}
 	playwright := &playwright.Playwright{}
 	thelounge := &thelounge.Thelounge{}
+	apprise := &apprise.Apprise{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
@@ -54,6 +56,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	config["tautulli"] = tautulli.Default()
 	config["playwright"] = playwright.Default()
 	config["thelounge"] = thelounge.Default()
-
+	config["apprise"] = apprise.Default()
+	
 	return config
 }
