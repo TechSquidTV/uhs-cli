@@ -4,6 +4,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services"
 	"github.com/techsquidtv/uhs-cli/models/services/apprise"
 	"github.com/techsquidtv/uhs-cli/models/services/autobrr"
+	"github.com/techsquidtv/uhs-cli/models/services/changedetectionio"
 	"github.com/techsquidtv/uhs-cli/models/services/cloudflared"
 	"github.com/techsquidtv/uhs-cli/models/services/gotify"
 	"github.com/techsquidtv/uhs-cli/models/services/kavita"
@@ -41,6 +42,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	playwright := &playwright.Playwright{}
 	thelounge := &thelounge.Thelounge{}
 	apprise := &apprise.Apprise{}
+	changedetectionio := &changedetectionio.Changedetectionio{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
@@ -57,6 +59,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	config["playwright"] = playwright.Default()
 	config["thelounge"] = thelounge.Default()
 	config["apprise"] = apprise.Default()
-	
+	config["changedetectionio"] = changedetectionio.Default()
+
 	return config
 }
