@@ -9,6 +9,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/gotify"
 	"github.com/techsquidtv/uhs-cli/models/services/huginn"
 	"github.com/techsquidtv/uhs-cli/models/services/kavita"
+	"github.com/techsquidtv/uhs-cli/models/services/nginx"
 	"github.com/techsquidtv/uhs-cli/models/services/overseerr"
 	"github.com/techsquidtv/uhs-cli/models/services/playwright"
 	"github.com/techsquidtv/uhs-cli/models/services/plex"
@@ -45,6 +46,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	apprise := &apprise.Apprise{}
 	changedetectionio := &changedetectionio.Changedetectionio{}
 	huginn := &huginn.Huginn{}
+	nginx := &nginx.Nginx{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
@@ -63,6 +65,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	config["apprise"] = apprise.Default()
 	config["changedetectionio"] = changedetectionio.Default()
 	config["huginn"] = huginn.Default()
+	config["nginx"] = nginx.Default()
 
 	return config
 }
