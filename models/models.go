@@ -15,6 +15,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/sabnzbd"
 	"github.com/techsquidtv/uhs-cli/models/services/sonarr"
 	"github.com/techsquidtv/uhs-cli/models/services/tautulli"
+	"github.com/techsquidtv/uhs-cli/models/services/thelounge"
 )
 
 type UHSConfig struct {
@@ -37,6 +38,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	gotify := &gotify.Gotify{}
 	tautulli := &tautulli.Tautulli{}
 	playwright := &playwright.Playwright{}
+	thelounge := &thelounge.Thelounge{}
 
 	config["qbittorrent"] = qbt.Default()
 	config["plex"] = plex.Default()
@@ -51,6 +53,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	config["gotify"] = gotify.Default()
 	config["tautulli"] = tautulli.Default()
 	config["playwright"] = playwright.Default()
+	config["thelounge"] = thelounge.Default()
 
 	return config
 }
