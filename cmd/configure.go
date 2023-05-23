@@ -6,6 +6,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"sort"
 
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
@@ -29,6 +30,7 @@ var configureCmd = &cobra.Command{
 		for k := range models.DefaultServiceConfig() {
 			serviceNames = append(serviceNames, k)
 		}
+		sort.Strings(serviceNames)
 		// Prompt user to select services to enable
 		serviceSelectPrompt := &survey.MultiSelect{
 			Message: "Select services to enable:",
