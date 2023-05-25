@@ -11,12 +11,12 @@ import (
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
 	"github.com/techsquidtv/uhs-cli/cmd/common"
-	"github.com/techsquidtv/uhs-cli/models"
+	"github.com/techsquidtv/uhs-cli/models/config"
 	"github.com/techsquidtv/uhs-cli/models/services"
 )
 
 // Return each key from the DefaultServiceConfig() config map
-var serviceNames = make([]string, 0, len(models.DefaultServiceConfig()))
+var serviceNames = make([]string, 0, len(config.DefaultServiceConfig()))
 
 // configureCmd represents the configure command
 var configureCmd = &cobra.Command{
@@ -30,10 +30,10 @@ var configureCmd = &cobra.Command{
 		if len(args) > 0 {
 			selectedServices = args
 		}
-		uhsConfig := models.UHSConfig{
+		uhsConfig := config.Config{
 			Services: make(services.ServicesConfig),
 		}
-		for k := range models.DefaultServiceConfig() {
+		for k := range config.DefaultServiceConfig() {
 			serviceNames = append(serviceNames, k)
 		}
 		sort.Strings(serviceNames)
@@ -78,7 +78,7 @@ var configureCmd = &cobra.Command{
 		// Execute configuration for each selected service
 		for _, serviceName := range selectedServices {
 			fmt.Println("Configuring " + serviceName + "...")
-			service := models.DefaultServiceConfig()[serviceName]
+			service := config.DefaultServiceConfig()[serviceName]
 			config := service.Configure()
 			uhsConfig.Services[serviceName] = config
 		}

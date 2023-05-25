@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/techsquidtv/uhs-cli/models"
+	"github.com/techsquidtv/uhs-cli/models/config"
 	"gopkg.in/yaml.v3"
 )
 
-func Output(filePath string, config *models.UHSConfig) error {
+func Output(filePath string, config *config.Config) error {
 	yamlConfig, err := yaml.Marshal(config)
 	if err != nil {
 		return err
