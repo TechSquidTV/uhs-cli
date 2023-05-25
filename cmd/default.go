@@ -8,9 +8,9 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/techsquidtv/uhs-cli/cmd/common"
+	configCommon "github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config"
 	"github.com/techsquidtv/uhs-cli/models/services"
-	configCommon "github.com/techsquidtv/uhs-cli/models/common"
 )
 
 // defaultCmd represents the default command

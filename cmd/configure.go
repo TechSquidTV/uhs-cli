@@ -11,9 +11,9 @@ import (
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
 	"github.com/techsquidtv/uhs-cli/cmd/common"
+	configCommon "github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config"
 	"github.com/techsquidtv/uhs-cli/models/services"
-	configCommon "github.com/techsquidtv/uhs-cli/models/common"
 )
 
 // Return each key from the DefaultServiceConfig() config map
@@ -32,7 +32,7 @@ var configureCmd = &cobra.Command{
 			selectedServices = args
 		}
 		uhsConfig := config.Config{
-			Common: new(configCommon.Common).Default(),
+			Common:   new(configCommon.Common).Default(),
 			Services: make(services.ServicesConfig),
 		}
 		for k := range config.DefaultServiceConfig() {
@@ -52,29 +52,29 @@ var configureCmd = &cobra.Command{
 				return
 			}
 		}
-			// Validate selected services
-			if len(selectedServices) == 0 {
-				fmt.Println("No services selected. Exiting...")
-				os.Exit(0)
-			}
-			serviceListString := ""
-			for _, service := range selectedServices {
-				serviceListString += fmt.Sprintf("  - %v\n", service)
-			}
+		// Validate selected services
+		if len(selectedServices) == 0 {
+			fmt.Println("No services selected. Exiting...")
+			os.Exit(0)
+		}
+		serviceListString := ""
+		for _, service := range selectedServices {
+			serviceListString += fmt.Sprintf("  - %v\n", service)
+		}
 
-			validateSelectionPrompt := &survey.Confirm{
-				Message: fmt.Sprintf("You have selected the following services:\n%v\n Is this correct?", serviceListString),
-			}
-			var validateSelection bool
-			err := survey.AskOne(validateSelectionPrompt, &validateSelection)
-			if err != nil {
-				fmt.Println(err.Error())
-				return
-			}
-			// If selection is not valid, exit
-			if !validateSelection {
-				fmt.Println("Exiting...")
-				os.Exit(0)
+		validateSelectionPrompt := &survey.Confirm{
+			Message: fmt.Sprintf("You have selected the following services:\n%v\n Is this correct?", serviceListString),
+		}
+		var validateSelection bool
+		err := survey.AskOne(validateSelectionPrompt, &validateSelection)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		// If selection is not valid, exit
+		if !validateSelection {
+			fmt.Println("Exiting...")
+			os.Exit(0)
 
 		}
 		// Execute configuration for each selected service

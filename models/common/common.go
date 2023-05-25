@@ -8,7 +8,7 @@ import (
 )
 
 type Common struct {
-	TZ      string `yaml:"tz"`
+	TZ      string  `yaml:"tz"`
 	Network Network `yaml:"network"`
 	Certs   Certs   `yaml:"certs"`
 }
@@ -83,6 +83,6 @@ func (c *Common) Configure() services.ServiceInterface {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	
+
 	return c
 }
