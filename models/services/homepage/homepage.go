@@ -15,9 +15,9 @@ type Homepage struct {
 
 type HomepageOptions struct {
 	Bookmarks []BookmarkGroup `yaml:"bookmarks"`
-  Services  []ServiceGroup  `yaml:"services"`
-  Widgets   []Widget        `yaml:"widgets"`
-  Settings  Settings        `yaml:"settings"`
+	Services  []ServiceGroup  `yaml:"services"`
+	Widgets   []Widget        `yaml:"widgets"`
+	Settings  Settings        `yaml:"settings"`
 }
 
 // Return default values for service
@@ -30,31 +30,31 @@ func (s *Homepage) Default() services.ServiceInterface {
 				CreateBookmark("github", "mdi-github", "gh", "https://github.com"),
 			},
 		},
-    {
-      "Media": []Bookmark{
+		{
+			"Media": []Bookmark{
 				CreateBookmark("youtube", "mdi-youtube", "yt", "https://youtube.com"),
 				CreateBookmark("plex", "mdi-plex", "plex", "https://app.plex.tv/desktop"),
 			},
-    },
+		},
 	}
-  servicesConfig := []ServiceGroup{
-    {
-      "Media": []Service{
-        CreateService("plex", "mdi-plex", "https://app.plex.tv/desktop", "Plex"),
-      },
-    },
-  }
-  widgetConfig := []Widget{
-    CreateWidget("search", map[string]interface{}{
-        "provider": "[duckduckgo, google]",
-        "focus": true,
-        "target": "_blank",
-      }),
-  }
-  settingsConfig := Settings{
-    "title": "Homepage",
-    "theme": "dark",
-  }
+	servicesConfig := []ServiceGroup{
+		{
+			"Media": []Service{
+				CreateService("plex", "mdi-plex", "https://app.plex.tv/desktop", "Plex"),
+			},
+		},
+	}
+	widgetConfig := []Widget{
+		CreateWidget("search", map[string]interface{}{
+			"provider": "[duckduckgo, google]",
+			"focus":    true,
+			"target":   "_blank",
+		}),
+	}
+	settingsConfig := Settings{
+		"title": "Homepage",
+		"theme": "dark",
+	}
 
 	p := &Homepage{
 		Service: services.Service{
@@ -71,9 +71,9 @@ func (s *Homepage) Default() services.ServiceInterface {
 		},
 		HomepageOptions: HomepageOptions{
 			Bookmarks: bookmarksConfig,
-      Services:  servicesConfig,
-      Widgets:   widgetConfig,
-      Settings:  settingsConfig,
+			Services:  servicesConfig,
+			Widgets:   widgetConfig,
+			Settings:  settingsConfig,
 		},
 	}
 	return p

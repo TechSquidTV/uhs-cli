@@ -24,8 +24,8 @@ import (
 )
 
 type Config struct {
-	Common	 services.ServiceInterface          `yaml:"common,omitempty"`
-	Services services.ServicesConfig `yaml:"services"`
+	Common   services.ServiceInterface `yaml:"common,omitempty"`
+	Services services.ServicesConfig   `yaml:"services"`
 }
 
 func DefaultServiceConfig() services.ServicesConfig {
