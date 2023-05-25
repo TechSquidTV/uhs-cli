@@ -24,7 +24,7 @@ import (
 )
 
 type Config struct {
-	Common	 services.ServicesConfig          `yaml:"common"`
+	Common	 services.ServiceInterface          `yaml:"common,omitempty"`
 	Services services.ServicesConfig `yaml:"services"`
 }
 
