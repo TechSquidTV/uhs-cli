@@ -8,7 +8,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/techsquidtv/uhs-cli/cmd/common"
-	"github.com/techsquidtv/uhs-cli/models"
+	"github.com/techsquidtv/uhs-cli/models/config"
 	"github.com/techsquidtv/uhs-cli/models/services"
 )
 
@@ -19,11 +19,11 @@ var defaultCmd = &cobra.Command{
 	Long: `Get the default configuration for UHS. 
 		This will output the default configuration file, meant to be overwritten manually of via the configure command.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		uhsConfig := models.UHSConfig{
+		uhsConfig := config.Config{
 			Services: make(services.ServicesConfig),
 		}
 		// Set services to default
-		for k, v := range models.DefaultServiceConfig() {
+		for k, v := range config.DefaultServiceConfig() {
 			uhsConfig.Services[k] = v
 		}
 		// Output

@@ -1,4 +1,4 @@
-package models
+package config
 
 import (
 	"github.com/techsquidtv/uhs-cli/models/services"
@@ -23,12 +23,12 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/thelounge"
 )
 
-type UHSConfig struct {
+type Config struct {
 	Services services.ServicesConfig `yaml:"services"`
 }
 
 func DefaultServiceConfig() services.ServicesConfig {
-	config := make(services.ServicesConfig)
+	uhsConfig := make(services.ServicesConfig)
 
 	qbt := &qbittorrent.Qbittorrent{}
 	plex := &plex.Plex{}
@@ -50,25 +50,25 @@ func DefaultServiceConfig() services.ServicesConfig {
 	nginx := &nginx.Nginx{}
 	homepage := &homepage.Homepage{}
 
-	config["qbittorrent"] = qbt.Default()
-	config["plex"] = plex.Default()
-	config["sonarr"] = sonarr.Default()
-	config["radarr"] = radarr.Default()
-	config["sabnzbd"] = sabnzbd.Default()
-	config["cloudflared"] = cloudflared.Default()
-	config["overseerr"] = overseerr.Default()
-	config["autobrr"] = autobrr.Default()
-	config["prowlarr"] = prowlarr.Default()
-	config["kavita"] = kavita.Default()
-	config["gotify"] = gotify.Default()
-	config["tautulli"] = tautulli.Default()
-	config["playwright"] = playwright.Default()
-	config["thelounge"] = thelounge.Default()
-	config["apprise"] = apprise.Default()
-	config["changedetectionio"] = changedetectionio.Default()
-	config["huginn"] = huginn.Default()
-	config["nginx"] = nginx.Default()
-	config["homepage"] = homepage.Default()
+	uhsConfig["qbittorrent"] = qbt.Default()
+	uhsConfig["plex"] = plex.Default()
+	uhsConfig["sonarr"] = sonarr.Default()
+	uhsConfig["radarr"] = radarr.Default()
+	uhsConfig["sabnzbd"] = sabnzbd.Default()
+	uhsConfig["cloudflared"] = cloudflared.Default()
+	uhsConfig["overseerr"] = overseerr.Default()
+	uhsConfig["autobrr"] = autobrr.Default()
+	uhsConfig["prowlarr"] = prowlarr.Default()
+	uhsConfig["kavita"] = kavita.Default()
+	uhsConfig["gotify"] = gotify.Default()
+	uhsConfig["tautulli"] = tautulli.Default()
+	uhsConfig["playwright"] = playwright.Default()
+	uhsConfig["thelounge"] = thelounge.Default()
+	uhsConfig["apprise"] = apprise.Default()
+	uhsConfig["changedetectionio"] = changedetectionio.Default()
+	uhsConfig["huginn"] = huginn.Default()
+	uhsConfig["nginx"] = nginx.Default()
+	uhsConfig["homepage"] = homepage.Default()
 
-	return config
+	return uhsConfig
 }
