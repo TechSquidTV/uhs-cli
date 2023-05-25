@@ -15,56 +15,65 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services"
 )
 
+// Return each key from the DefaultServiceConfig() config map
+var serviceNames = make([]string, 0, len(models.DefaultServiceConfig()))
+
 // configureCmd represents the configure command
 var configureCmd = &cobra.Command{
-	Use:   "configure",
-	Short: "Configure your UHS instance",
-	Long:  `Customize and configure your desired services for your UHS instance.`,
+	Use:       "configure",
+	Short:     "Configure your UHS instance",
+	Long:      `Customize and configure your desired services for your UHS instance.`,
+	ValidArgs: serviceNames,
 	Run: func(cmd *cobra.Command, args []string) {
 		// Create a new instance of the UHSConfig struct
+		var selectedServices []string
+		if len(args) > 0 {
+			selectedServices = args
+		}
 		uhsConfig := models.UHSConfig{
 			Services: make(services.ServicesConfig),
 		}
-		// Return each key from the DefaultServiceConfig() config map
-		serviceNames := make([]string, 0, len(models.DefaultServiceConfig()))
 		for k := range models.DefaultServiceConfig() {
 			serviceNames = append(serviceNames, k)
 		}
 		sort.Strings(serviceNames)
-		// Prompt user to select services to enable
-		serviceSelectPrompt := &survey.MultiSelect{
-			Message: "Select services to enable:",
-			Options: serviceNames,
-		}
-		var selectedServices []string
-		err := survey.AskOne(serviceSelectPrompt, &selectedServices)
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
-		// Validate selected services
-		if len(selectedServices) == 0 {
-			fmt.Println("No services selected. Exiting...")
-			os.Exit(0)
-		}
-		serviceListString := ""
-		for _, service := range selectedServices {
-			serviceListString += fmt.Sprintf("  - %v\n", service)
-		}
 
-		validateSelectionPrompt := &survey.Confirm{
-			Message: fmt.Sprintf("You have selected the following services:\n%v\n Is this correct?", serviceListString),
+		if len(selectedServices) == 0 {
+			// Prompt user to select services to enable
+			serviceSelectPrompt := &survey.MultiSelect{
+				Message: "Select services to enable:",
+				Options: serviceNames,
+			}
+			err := survey.AskOne(serviceSelectPrompt, &selectedServices)
+			if err != nil {
+				fmt.Println(err.Error())
+				return
+			}
 		}
-		var validateSelection bool
-		err = survey.AskOne(validateSelectionPrompt, &validateSelection)
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
-		// If selection is not valid, exit
-		if !validateSelection {
-			fmt.Println("Exiting...")
-			os.Exit(0)
+			// Validate selected services
+			if len(selectedServices) == 0 {
+				fmt.Println("No services selected. Exiting...")
+				os.Exit(0)
+			}
+			serviceListString := ""
+			for _, service := range selectedServices {
+				serviceListString += fmt.Sprintf("  - %v\n", service)
+			}
+
+			validateSelectionPrompt := &survey.Confirm{
+				Message: fmt.Sprintf("You have selected the following services:\n%v\n Is this correct?", serviceListString),
+			}
+			var validateSelection bool
+			err := survey.AskOne(validateSelectionPrompt, &validateSelection)
+			if err != nil {
+				fmt.Println(err.Error())
+				return
+			}
+			// If selection is not valid, exit
+			if !validateSelection {
+				fmt.Println("Exiting...")
+				os.Exit(0)
+
 		}
 		// Execute configuration for each selected service
 		for _, serviceName := range selectedServices {
