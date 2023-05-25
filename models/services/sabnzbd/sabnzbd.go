@@ -29,7 +29,7 @@ func (s *Sabnzbd) Default() services.ServiceInterface {
 			Image: services.Image{
 				Repository: "lscr.io/linuxserver/sabnzbd",
 				Tag:        "latest",
-				PullPolicy: "IfNotPresent",
+				PullPolicy: "Always",
 			},
 			Ports: services.Ports{
 				Http: &http,

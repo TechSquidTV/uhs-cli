@@ -29,7 +29,7 @@ func (s *Cloudflared) Default() services.ServiceInterface {
 			Image: services.Image{
 				Repository: "cloudflared/cloudflared",
 				Tag:        "latest",
-				PullPolicy: "IfNotPresent",
+				PullPolicy: "IfNotPresent", // For stability
 			},
 			Ports: services.Ports{},
 		},
