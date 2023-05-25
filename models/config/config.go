@@ -1,7 +1,6 @@
 package config
 
 import (
-	"github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/services"
 	"github.com/techsquidtv/uhs-cli/models/services/apprise"
 	"github.com/techsquidtv/uhs-cli/models/services/autobrr"
@@ -25,7 +24,7 @@ import (
 )
 
 type Config struct {
-	Common	 common.Common          `yaml:"common"`
+	Common	 services.ServicesConfig          `yaml:"common"`
 	Services services.ServicesConfig `yaml:"services"`
 }
 

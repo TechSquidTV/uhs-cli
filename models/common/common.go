@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/AlecAivazis/survey/v2"
+	"github.com/techsquidtv/uhs-cli/models/services"
 )
 
 type Common struct {
@@ -22,8 +23,8 @@ type Certs struct {
 	SSLDHParam        string `yaml:"ssl_dhparam"`
 }
 
-func DefaultCommon() Common {
-	return Common{
+func (c *Common) Default() services.ServiceInterface {
+	r := &Common{
 		TZ: "America/New_York",
 		Network: Network{
 			Gateway: "192.168.1.1",
@@ -34,9 +35,10 @@ func DefaultCommon() Common {
 			SSLDHParam:        "/etc/letsencrypt/certs/dhparam.pem",
 		},
 	}
+	return r
 }
 
-func (c *Common) Configure() Common {
+func (c *Common) Configure() services.ServiceInterface {
 	inputTz := &survey.Input{
 		Message: "Enter your timezone:",
 		Default: c.TZ,
@@ -82,5 +84,5 @@ func (c *Common) Configure() Common {
 		fmt.Println(err.Error())
 	}
 	
-	return *c
+	return c
 }
