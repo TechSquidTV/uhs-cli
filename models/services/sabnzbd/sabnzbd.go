@@ -27,7 +27,7 @@ func (s *Sabnzbd) Default() services.ServiceInterface {
 			Enabled:      false,
 			ReplicaCount: 1,
 			Image: services.Image{
-				Repository: "linuxserver/sabnzbd",
+				Repository: "lscr.io/linuxserver/sabnzbd",
 				Tag:        "latest",
 				PullPolicy: "IfNotPresent",
 			},

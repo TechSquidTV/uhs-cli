@@ -25,7 +25,7 @@ func (s *Overseerr) Default() services.ServiceInterface {
 			Enabled:      false,
 			ReplicaCount: 1,
 			Image: services.Image{
-				Repository: "linuxserver/overseerr",
+				Repository: "lscr.io/linuxserver/overseerr",
 				Tag:        "latest",
 				PullPolicy: "IfNotPresent",
 			},

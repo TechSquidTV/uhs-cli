@@ -27,7 +27,7 @@ func (s *Sonarr) Default() services.ServiceInterface {
 			Enabled:      false,
 			ReplicaCount: 1,
 			Image: services.Image{
-				Repository: "linuxserver/sonarr",
+				Repository: "lscr.io/linuxserver/sonarr",
 				Tag:        "latest",
 				PullPolicy: "IfNotPresent",
 			},
