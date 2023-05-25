@@ -25,7 +25,7 @@ func (s *Prowlarr) Default() services.ServiceInterface {
 			Enabled:      false,
 			ReplicaCount: 1,
 			Image: services.Image{
-				Repository: "linuxserver/prowlarr",
+				Repository: "lscr.io/linuxserver/prowlarr",
 				Tag:        "latest",
 				PullPolicy: "IfNotPresent",
 			},

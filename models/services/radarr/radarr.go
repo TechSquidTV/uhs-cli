@@ -27,7 +27,7 @@ func (s *Radarr) Default() services.ServiceInterface {
 			Enabled:      false,
 			ReplicaCount: 1,
 			Image: services.Image{
-				Repository: "linuxserver/radarr",
+				Repository: "lscr.io/linuxserver/radarr",
 				Tag:        "latest",
 				PullPolicy: "IfNotPresent",
 			},

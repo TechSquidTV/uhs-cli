@@ -29,7 +29,7 @@ func (s *Qbittorrent) Default() services.ServiceInterface {
 			Enabled:      false,
 			ReplicaCount: 1,
 			Image: services.Image{
-				Repository: "linuxserver/qbittorrent",
+				Repository: "lscr.io/linuxserver/qbittorrent",
 				Tag:        "latest",
 				PullPolicy: "IfNotPresent",
 			},

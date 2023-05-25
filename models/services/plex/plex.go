@@ -26,7 +26,7 @@ func (s *Plex) Default() services.ServiceInterface {
 			Enabled:      false,
 			ReplicaCount: 1,
 			Image: services.Image{
-				Repository: "linuxserver/plex",
+				Repository: "lscr.io/linuxserver/plex",
 				Tag:        "latest",
 				PullPolicy: "IfNotPresent",
 			},
