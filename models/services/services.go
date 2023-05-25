@@ -17,7 +17,7 @@ type Service struct {
 	Enabled      bool  `yaml:"enabled"`
 	ReplicaCount int   `yaml:"replicaCount"`
 	Image        Image `yaml:"image"`
-	Ports        Ports `yaml:"ports"`
+	Ports        Ports `yaml:"ports,omitempty"`
 }
 
 type ServiceInterface interface {
