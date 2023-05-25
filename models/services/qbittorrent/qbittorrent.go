@@ -31,7 +31,7 @@ func (s *Qbittorrent) Default() services.ServiceInterface {
 			Image: services.Image{
 				Repository: "lscr.io/linuxserver/qbittorrent",
 				Tag:        "latest",
-				PullPolicy: "IfNotPresent",
+				PullPolicy: "Always",
 			},
 			Ports: services.Ports{
 				Http:   &http,

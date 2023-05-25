@@ -28,7 +28,7 @@ func (s *Plex) Default() services.ServiceInterface {
 			Image: services.Image{
 				Repository: "lscr.io/linuxserver/plex",
 				Tag:        "latest",
-				PullPolicy: "IfNotPresent",
+				PullPolicy: "Always",
 			},
 			Ports: services.Ports{
 				Http: &http,

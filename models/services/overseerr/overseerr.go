@@ -27,7 +27,7 @@ func (s *Overseerr) Default() services.ServiceInterface {
 			Image: services.Image{
 				Repository: "lscr.io/linuxserver/overseerr",
 				Tag:        "latest",
-				PullPolicy: "IfNotPresent",
+				PullPolicy: "Always",
 			},
 			Ports: services.Ports{
 				Http: &http,

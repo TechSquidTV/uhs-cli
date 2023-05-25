@@ -29,7 +29,7 @@ func (s *Radarr) Default() services.ServiceInterface {
 			Image: services.Image{
 				Repository: "lscr.io/linuxserver/radarr",
 				Tag:        "latest",
-				PullPolicy: "IfNotPresent",
+				PullPolicy: "Always",
 			},
 			Ports: services.Ports{
 				Http: &http,
