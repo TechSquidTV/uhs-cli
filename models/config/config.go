@@ -1,6 +1,8 @@
 package config
 
 import (
+	"os"
+
 	"github.com/techsquidtv/uhs-cli/models/services"
 	"github.com/techsquidtv/uhs-cli/models/services/apprise"
 	"github.com/techsquidtv/uhs-cli/models/services/autobrr"
@@ -21,6 +23,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/sonarr"
 	"github.com/techsquidtv/uhs-cli/models/services/tautulli"
 	"github.com/techsquidtv/uhs-cli/models/services/thelounge"
+	"gopkg.in/yaml.v2"
 )
 
 type Config struct {
@@ -71,5 +74,22 @@ func DefaultServiceConfig() services.ServicesConfig {
 	uhsConfig["nginx"] = nginx.Default()
 	uhsConfig["homepage"] = homepage.Default()
 
+	return uhsConfig
+}
+
+func Load(file string) Config {
+	f, err := os.Open(file)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	uhsConfig := Config{}
+
+	decoder := yaml.NewDecoder(f)
+	err = decoder.Decode(&uhsConfig)
+	if err != nil {
+		panic(err)
+	}
 	return uhsConfig
 }
