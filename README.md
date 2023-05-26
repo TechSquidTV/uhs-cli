@@ -8,7 +8,9 @@
   <a href="https://github.com/sponsors/KyleTryon">
     <img alt="GitHub Sponsors" src="https://img.shields.io/github/sponsors/KyleTryon">
   </a>
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/uhs-cli/UltimateHomeServer/commitlint.yml">
+  <a href="https://github.com/TechSquidTV/uhs-cli/actions/workflows/golangci-lint.yml">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/TechSquidTV/uhs-cli/golangci-lint.yml">
+  </a>
   <a href="https://discord.gg/CTC9DVvYZz">
     <img alt="Discord" src="https://img.shields.io/discord/415249366840901643?style=plastic&logo=discord">
   </a>
@@ -23,12 +25,29 @@ An interactive CLI to assist in configuring services for the <a href="https://gi
 </p>
 
 
-**Pre-Alpha:** This CLI is currently in active development and is not ready for use.
+**Beta:** This CLI is currently in active development and is subject to change.
 
 
 # Getting Started
 
 ## Installation
+
+
+### Binary
+
+Utilize the install script to download the latest release for your platform.
+
+```bash
+wget https://raw.githubusercontent.com/TechSquidTV/uhs-cli/main/install.sh
+```
+
+```bash
+chmod +x install.sh
+```
+
+```bash
+./install.sh
+```
 
 ### Go
 
@@ -36,19 +55,30 @@ An interactive CLI to assist in configuring services for the <a href="https://gi
 go install github.com/uhs-cli/uhs@latest
 ```
 
-### Binary
-
-Visit the [releases]() section and download the latest release for your platform.
-
-```bash
-```
-
 ## Usage
 
 ```bash
-uhs configure -o secrets.yaml
+Usage:
+  uhs-cli [command]
+
+Available Commands:
+  configure   Configure your UHS instance
+  default     Get the default configuration for UHS
+  help        Help about any command
+
+Flags:
+  -h, --help     help for uhs-cli
+  -t, --toggle   Help message for toggle
 ```
 
-### Screencast
+Generate configurations for individual services:
 
-[![asciicast](https://asciinema.org/a/R58ErthUiItMNwEmn06qpEKnU.svg)](https://asciinema.org/a/R58ErthUiItMNwEmn06qpEKnU)
+```bash
+uhs-cli configure <service> -o values.yaml
+```
+
+Generate a default configuration for all services:
+
+```bash
+uhs-cli default -o values.yaml
+```
