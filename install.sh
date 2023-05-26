@@ -20,11 +20,11 @@ wget $URL
 mkdir uhs-cli_${OS}_${ARCH}
 tar -xvzf uhs-cli_${OS}_${ARCH}.tar.gz -C uhs-cli_${OS}_${ARCH}
 
-# Make the binary executable
-chmod +x uhs-cli_${OS}_${ARCH}/uhs-cli
-
 # Move the binary to a location in your PATH
 mv uhs-cli_${OS}_${ARCH}/uhs-cli ~/.local/bin/uhs
+
+# Ensure the binary is executable
+chmod +x ~/.local/bin/uhs
 
 # Clean up the downloaded file and the extracted directory
 rm uhs-cli_${OS}_${ARCH}.tar.gz
