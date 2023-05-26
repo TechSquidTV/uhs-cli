@@ -13,7 +13,7 @@ if [ "$ARCH" = "x86_64" ]; then
 fi
 
 # The URL of the release
-URL="https://github.com/TechSquidTV/uhs-cli/releases/download/v${VERSION}/uhs-cli_${VERSION}_${OS}_${ARCH}.tar.gz"
+URL="https://github.com/TechSquidTV/uhs-cli/releases/download/${VERSION}/uhs-cli_${VERSION}_${OS}_${ARCH}.tar.gz"
 
 # Download and extract the binary
 wget $URL
