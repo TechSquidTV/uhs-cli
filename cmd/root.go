@@ -11,14 +11,10 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "uhs-cli",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Use:   "uhs",
+	Short: "Create and customize configuration files for UltimateHomeServer",
+	Long: `Utilize the UHS CLI to customize your deployments of UltimateHomeServer.
+	Interactively select the services you want to deploy, and the CLI will generate the necessary configuration files for you.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
