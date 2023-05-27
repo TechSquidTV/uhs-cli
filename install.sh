@@ -7,11 +7,6 @@ VERSION=$(curl -s https://api.github.com/repos/TechSquidTV/uhs-cli/releases/late
 OS=$(uname)
 ARCH=$(uname -m)
 
-# Check if the architecture is x86
-if [ "$ARCH" = "x86_64" ]; then
-  ARCH="amd64"
-fi
-
 # The URL of the release
 URL="https://github.com/TechSquidTV/uhs-cli/releases/download/${VERSION}/uhs-cli_${OS}_${ARCH}.tar.gz"
 
