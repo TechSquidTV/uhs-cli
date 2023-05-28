@@ -72,5 +72,14 @@ func (s *Cloudflared) Configure() services.ServiceInterface {
 		fmt.Println(err.Error())
 	}
 
+	inputTarget := &survey.Input{
+		Message: "Enter the target you want to use:",
+		Default: s.Target,
+	}
+	err = survey.AskOne(inputTarget, &s.Target)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
 	return s
 }
