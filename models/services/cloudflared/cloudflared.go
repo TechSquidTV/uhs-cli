@@ -27,7 +27,7 @@ func (s *Cloudflared) Default() services.ServiceInterface {
 			Enabled:      false,
 			ReplicaCount: 1,
 			Image: services.Image{
-				Repository: "cloudflared/cloudflared",
+				Repository: "cloudflare/cloudflared",
 				Tag:        "latest",
 				PullPolicy: "IfNotPresent", // For stability
 			},
