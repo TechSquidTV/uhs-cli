@@ -20,7 +20,7 @@ type RadarrOptions struct {
 
 // Return default values for service
 func (s *Radarr) Default() services.ServiceInterface {
-	http := 8989
+	http := 7878
 
 	p := &Radarr{
 		Service: services.Service{
