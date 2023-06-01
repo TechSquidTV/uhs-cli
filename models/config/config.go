@@ -9,6 +9,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/models/services/gotify"
 	"github.com/techsquidtv/uhs-cli/models/services/homepage"
 	"github.com/techsquidtv/uhs-cli/models/services/huginn"
+	"github.com/techsquidtv/uhs-cli/models/services/jellyfin"
 	"github.com/techsquidtv/uhs-cli/models/services/kavita"
 	"github.com/techsquidtv/uhs-cli/models/services/nginx"
 	"github.com/techsquidtv/uhs-cli/models/services/overseerr"
@@ -50,6 +51,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	huginn := &huginn.Huginn{}
 	nginx := &nginx.Nginx{}
 	homepage := &homepage.Homepage{}
+	jellyfin := &jellyfin.Jellyfin{}
 
 	uhsConfig["qbittorrent"] = qbt.Default()
 	uhsConfig["plex"] = plex.Default()
@@ -70,6 +72,7 @@ func DefaultServiceConfig() services.ServicesConfig {
 	uhsConfig["huginn"] = huginn.Default()
 	uhsConfig["nginx"] = nginx.Default()
 	uhsConfig["homepage"] = homepage.Default()
+	uhsConfig["jellyfin"] = jellyfin.Default()
 
 	return uhsConfig
 }
