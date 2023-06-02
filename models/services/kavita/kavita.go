@@ -36,7 +36,7 @@ func (s *Kavita) Default() services.ServiceInterface {
 		},
 		KavitaOptions: KavitaOptions{
 			Config:  "/opt/kavita/config",
-			Library: "/opt/kavita/library",
+			Library: "/data/library/books",
 		},
 	}
 	return p

@@ -13,9 +13,8 @@ type Radarr struct {
 }
 
 type RadarrOptions struct {
-	Config    string `yaml:"config"`
-	Downloads string `yaml:"downloads"`
-	Movies     string `yaml:"movies"`
+	Config string `yaml:"config"`
+	Data   string `yaml:"data"`
 }
 
 // Return default values for service
@@ -36,9 +35,8 @@ func (s *Radarr) Default() services.ServiceInterface {
 			},
 		},
 		RadarrOptions: RadarrOptions{
-			Config:    "/opt/radarr/config",
-			Downloads: "~/downloads",
-			Movies:     "/opt/radarr/movies",
+			Config: "/opt/radarr/config",
+			Data:   "/data",
 		},
 	}
 	return p
@@ -55,22 +53,14 @@ func (s *Radarr) Configure() services.ServiceInterface {
 		fmt.Println(err.Error())
 	}
 
-	inputDownloadsPath := &survey.Input{
-		Message: "Enter the path to your radarr downloads folder:",
-		Default: s.Downloads,
+	inputDataPath := &survey.Input{
+		Message: "Enter the path to your top level media folder:",
+		Default: s.Data,
 	}
-	err = survey.AskOne(inputDownloadsPath, &s.Downloads)
+	err = survey.AskOne(inputDataPath, &s.Data)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 
-	inputMoviePath := &survey.Input{
-		Message: "Enter the path to your radarr Movies folder:",
-		Default: s.Movies,
-	}
-	err = survey.AskOne(inputMoviePath, &s.Movies)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
 	return s
 }

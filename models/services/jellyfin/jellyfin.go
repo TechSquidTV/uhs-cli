@@ -13,8 +13,8 @@ type Jellyfin struct {
 }
 
 type JellyfinOptions struct {
-	Config    string `yaml:"config"`
-	Library	 string `yaml:"library"`
+	Config  string `yaml:"config"`
+	Library string `yaml:"library"`
 }
 
 // Return default values for service
@@ -33,12 +33,12 @@ func (s *Jellyfin) Default() services.ServiceInterface {
 			},
 			Ports: services.Ports{
 				Http: &http,
-				Udp: &udp,
+				Udp:  &udp,
 			},
 		},
 		JellyfinOptions: JellyfinOptions{
-			Config:    "/opt/jellyfin/config",
-			Library: "/opt/jellyfin/library",
+			Config:  "/opt/jellyfin/config",
+			Library: "/data/library",
 		},
 	}
 	return p
