@@ -13,8 +13,8 @@ type Qbittorrent struct {
 }
 
 type QbittorrentOptions struct {
-	Config    string `yaml:"config"`
-	Downloads string `yaml:"downloads"`
+	Config string `yaml:"config"`
+	Data   string `yaml:"data"`
 }
 
 // Return default values for service
@@ -40,8 +40,8 @@ func (s *Qbittorrent) Default() services.ServiceInterface {
 			},
 		},
 		QbittorrentOptions: QbittorrentOptions{
-			Config:    "/opt/qbittorrent/config",
-			Downloads: "~/downloads",
+			Config: "/opt/qbittorrent/config",
+			Data:   "/data/torrents",
 		},
 	}
 	return q
@@ -58,13 +58,14 @@ func (s *Qbittorrent) Configure() services.ServiceInterface {
 		fmt.Println(err.Error())
 	}
 
-	inputDownloadsPath := &survey.Input{
-		Message: "Enter the path to your qbittorrent downloads folder:",
-		Default: s.Downloads,
+	inputDataPath := &survey.Input{
+		Message: "Enter the path to your torrent data folder:",
+		Default: s.Data,
 	}
-	err = survey.AskOne(inputDownloadsPath, &s.Downloads)
+	err = survey.AskOne(inputDataPath, &s.Data)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
+
 	return s
 }

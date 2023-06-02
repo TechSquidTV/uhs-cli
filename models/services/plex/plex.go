@@ -36,7 +36,7 @@ func (s *Plex) Default() services.ServiceInterface {
 		},
 		PlexOptions: PlexOptions{
 			Config:  "/opt/plex/config",
-			Library: "/opt/plex/library",
+			Library: "/data/library",
 		},
 	}
 	return p

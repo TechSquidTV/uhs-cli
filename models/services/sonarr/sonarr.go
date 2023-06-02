@@ -13,9 +13,8 @@ type Sonarr struct {
 }
 
 type SonarrOptions struct {
-	Config    string `yaml:"config"`
-	Downloads string `yaml:"downloads"`
-	Tv        string `yaml:"tv"`
+	Config string `yaml:"config"`
+	Data   string `yaml:"data"`
 }
 
 // Return default values for service
@@ -36,9 +35,8 @@ func (s *Sonarr) Default() services.ServiceInterface {
 			},
 		},
 		SonarrOptions: SonarrOptions{
-			Config:    "/opt/sonarr/config",
-			Downloads: "~/downloads",
-			Tv:        "/opt/sonarr/tv",
+			Config: "/opt/sonarr/config",
+			Data:   "/data",
 		},
 	}
 	return p
@@ -55,22 +53,14 @@ func (s *Sonarr) Configure() services.ServiceInterface {
 		fmt.Println(err.Error())
 	}
 
-	inputDownloadsPath := &survey.Input{
-		Message: "Enter the path to your Sonarr downloads folder:",
-		Default: s.Downloads,
+	inputDataPath := &survey.Input{
+		Message: "Enter the path to your top level media folder:",
+		Default: s.Data,
 	}
-	err = survey.AskOne(inputDownloadsPath, &s.Downloads)
+	err = survey.AskOne(inputDataPath, &s.Data)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 
-	inputTvPath := &survey.Input{
-		Message: "Enter the path to your Sonarr TV folder:",
-		Default: s.Tv,
-	}
-	err = survey.AskOne(inputTvPath, &s.Tv)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
 	return s
 }

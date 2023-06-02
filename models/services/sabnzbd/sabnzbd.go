@@ -13,8 +13,8 @@ type Sabnzbd struct {
 }
 
 type SabnzbdOptions struct {
-	Config    string `yaml:"config"`
-	Downloads string `yaml:"downloads"`
+	Config string `yaml:"config"`
+	Data   string `yaml:"data"`
 }
 
 // Return default values for service
@@ -36,8 +36,8 @@ func (s *Sabnzbd) Default() services.ServiceInterface {
 			},
 		},
 		SabnzbdOptions: SabnzbdOptions{
-			Config:    "/opt/sabnzbd/config",
-			Downloads: "~/downloads",
+			Config: "/opt/sabnzbd/config",
+			Data:   "/data/usenet",
 		},
 	}
 	return q
@@ -54,13 +54,14 @@ func (s *Sabnzbd) Configure() services.ServiceInterface {
 		fmt.Println(err.Error())
 	}
 
-	inputDownloadsPath := &survey.Input{
-		Message: "Enter the path to your sabnzbd downloads folder:",
-		Default: s.Downloads,
+	inputDataPath := &survey.Input{
+		Message: "Enter the path to your usenet data folder:",
+		Default: s.Data,
 	}
-	err = survey.AskOne(inputDownloadsPath, &s.Downloads)
+	err = survey.AskOne(inputDataPath, &s.Data)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
+
 	return s
 }
