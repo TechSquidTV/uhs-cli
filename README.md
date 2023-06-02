@@ -52,14 +52,14 @@ chmod +x install.sh
 ### Go
 
 ```bash
-go install github.com/uhs-cli/uhs@latest
+go install github.com/TechSquidTV/uhs-cli@latest
 ```
 
 ## Usage
 
 ```bash
 Usage:
-  uhs-cli [command]
+  uhs [command]
 
 Available Commands:
   configure   Configure your UHS instance
