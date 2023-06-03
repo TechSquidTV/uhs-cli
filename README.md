@@ -52,7 +52,7 @@ chmod +x install.sh
 ### Go
 
 ```bash
-go install github.com/TechSquidTV/uhs-cli@latest
+go install github.com/techsquidtv/uhs-cli@latest
 ```
 
 ## Usage
