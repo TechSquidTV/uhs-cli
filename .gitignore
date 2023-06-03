@@ -1,3 +1,4 @@
 .vscode
-secrets.yaml
+secrets.y*
+values.y*
 dist/
