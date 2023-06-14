@@ -10,7 +10,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/cmd/common"
 	configCommon "github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config"
-	"github.com/techsquidtv/uhs-cli/models/services"
+	"github.com/techsquidtv/uhs-cli/models/service"
 )
 
 // defaultCmd represents the default command
@@ -22,7 +22,7 @@ var defaultCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		uhsConfig := config.Config{
 			Common:   new(configCommon.Common).Default(),
-			Services: make(services.ServicesConfig),
+			Services: make(service.ServicesConfig),
 		}
 
 		// Set services to default

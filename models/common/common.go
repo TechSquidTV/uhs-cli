@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/techsquidtv/uhs-cli/models/services"
+	"github.com/techsquidtv/uhs-cli/models/service"
 )
 
 type Common struct {
@@ -23,7 +23,7 @@ type Certs struct {
 	SSLDHParam        string `yaml:"ssl_dhparam"`
 }
 
-func (c *Common) Default() services.ServiceInterface {
+func (c *Common) Default() service.ServiceInterface {
 	r := &Common{
 		TZ: "America/New_York",
 		Network: Network{
@@ -38,7 +38,7 @@ func (c *Common) Default() services.ServiceInterface {
 	return r
 }
 
-func (c *Common) Configure() services.ServiceInterface {
+func (c *Common) Configure() service.ServiceInterface {
 	inputTz := &survey.Input{
 		Message: "Enter your timezone:",
 		Default: c.TZ,
