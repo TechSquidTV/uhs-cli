@@ -2,6 +2,7 @@ package common
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/techsquidtv/uhs-cli/models/config"
@@ -22,6 +23,18 @@ func Output(filePath string, config *config.Config) error {
 			return err
 		}
 		fmt.Println("Configuration complete! Your configuration file has been saved to " + filePath + ".")
+	}
+	return nil
+}
+
+func Input(filePath string, config *config.Config) error {
+	inputFile, err := os.ReadFile(filePath)
+	if err != nil {
+		log.Fatalf("Unable to read file: %v", err)
+	}
+	err = yaml.Unmarshal(inputFile, config)
+	if err != nil {
+		log.Fatalf("Unable to unmarshal data: %v", err)
 	}
 	return nil
 }
