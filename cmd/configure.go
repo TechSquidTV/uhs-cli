@@ -13,7 +13,7 @@ import (
 	"github.com/techsquidtv/uhs-cli/cmd/common"
 	configCommon "github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config"
-	"github.com/techsquidtv/uhs-cli/models/services"
+	"github.com/techsquidtv/uhs-cli/models/service"
 )
 
 // Return each key from the DefaultServiceConfig() config map
@@ -33,7 +33,7 @@ var configureCmd = &cobra.Command{
 		}
 		uhsConfig := config.Config{
 			Common:   new(configCommon.Common).Default(),
-			Services: make(services.ServicesConfig),
+			Services: make(service.ServicesConfig),
 		}
 		for k := range config.DefaultServiceConfig() {
 			serviceNames = append(serviceNames, k)
