@@ -26,14 +26,24 @@ var configureCmd = &cobra.Command{
 	Long:      `Customize and configure your desired services for your UHS instance.`,
 	ValidArgs: serviceNames,
 	Run: func(cmd *cobra.Command, args []string) {
-		// Create a new instance of the UHSConfig struct
+		var uhsConfig config.Config
 		var selectedServices []string
 		if len(args) > 0 {
 			selectedServices = args
 		}
-		uhsConfig := config.Config{
-			Common:   new(configCommon.Common).Default(),
-			Services: make(service.ServicesConfig),
+		inputFilePath, err := cmd.Flags().GetString("input")
+		if err != nil {
+			fmt.Println("No file path provided.")
+			err = nil
+			return
+		}
+		if inputFilePath != "" {
+			err = common.Input(inputFilePath, &uhsConfig)
+		} else {
+			uhsConfig = config.Config{
+				Common:   new(configCommon.Common).Default(),
+				Services: make(service.ServicesConfig),
+			}
 		}
 		for k := range config.DefaultServiceConfig() {
 			serviceNames = append(serviceNames, k)
@@ -66,7 +76,7 @@ var configureCmd = &cobra.Command{
 			Message: fmt.Sprintf("You have selected the following services:\n%v\n Is this correct?", serviceListString),
 		}
 		var validateSelection bool
-		err := survey.AskOne(validateSelectionPrompt, &validateSelection)
+		err = survey.AskOne(validateSelectionPrompt, &validateSelection)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -101,6 +111,7 @@ var configureCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(configureCmd)
 	configureCmd.PersistentFlags().StringP("output", "o", "", "Output file path")
+	configureCmd.PersistentFlags().StringP("input", "i", "", "Input file path")
 
 	// Here you will define your flags and configuration settings.
 

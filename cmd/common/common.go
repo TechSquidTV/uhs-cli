@@ -2,7 +2,6 @@ package common
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/techsquidtv/uhs-cli/models/config"
@@ -30,11 +29,11 @@ func Output(filePath string, config *config.Config) error {
 func Input(filePath string, config *config.Config) error {
 	inputFile, err := os.ReadFile(filePath)
 	if err != nil {
-		log.Fatalf("Unable to read file: %v", err)
+		fmt.Printf("Unable to read file: %v", err)
 	}
 	err = yaml.Unmarshal(inputFile, config)
 	if err != nil {
-		log.Fatalf("Unable to unmarshal data: %v", err)
+		fmt.Printf("Unable to unmarshal data: %v", err)
 	}
 	return nil
 }
