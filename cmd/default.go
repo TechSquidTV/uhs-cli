@@ -11,6 +11,7 @@ import (
 	configCommon "github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config"
 	"github.com/techsquidtv/uhs-cli/models/service"
+	"github.com/techsquidtv/uhs-cli/models/service/servicemap"
 )
 
 // defaultCmd represents the default command
@@ -26,7 +27,7 @@ var defaultCmd = &cobra.Command{
 		}
 
 		// Set services to default
-		for k, v := range config.DefaultServiceConfig() {
+		for k, v := range servicemap.ServiceMap {
 			uhsConfig.Services[k] = v
 		}
 		// Output
