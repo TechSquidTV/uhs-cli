@@ -40,6 +40,10 @@ var configureCmd = &cobra.Command{
 		}
 		if inputFilePath != "" {
 			err = common.Input(inputFilePath, &uhsConfig)
+			if err != nil {
+				fmt.Println("Error reading input file." + err.Error())
+				return
+			}
 		} else {
 			uhsConfig = config.Config{
 				Common:   new(configCommon.Common).Default(),
