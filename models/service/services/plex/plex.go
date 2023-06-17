@@ -9,7 +9,7 @@ import (
 
 type Plex struct {
 	service.Service `yaml:",inline"`
-	PlexOptions      `yaml:",inline"`
+	PlexOptions     `yaml:",inline"`
 }
 
 type PlexOptions struct {

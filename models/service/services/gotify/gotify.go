@@ -9,7 +9,7 @@ import (
 
 type Gotify struct {
 	service.Service `yaml:",inline"`
-	GotifyOptions    `yaml:",inline"`
+	GotifyOptions   `yaml:",inline"`
 }
 
 type GotifyOptions struct {

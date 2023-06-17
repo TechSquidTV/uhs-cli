@@ -10,7 +10,7 @@ func GetString(s string) *string {
 
 type Homepage struct {
 	service.Service `yaml:",inline"`
-	HomepageOptions  `yaml:",inline"`
+	HomepageOptions `yaml:",inline"`
 }
 
 type HomepageOptions struct {

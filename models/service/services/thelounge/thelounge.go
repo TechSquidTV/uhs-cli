@@ -8,7 +8,7 @@ import (
 )
 
 type Thelounge struct {
-	service.Service `yaml:",inline"`
+	service.Service  `yaml:",inline"`
 	TheloungeOptions `yaml:",inline"`
 }
 

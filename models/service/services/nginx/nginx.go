@@ -9,7 +9,7 @@ import (
 
 type Nginx struct {
 	service.Service `yaml:",inline"`
-	NginxOptions     `yaml:",inline"`
+	NginxOptions    `yaml:",inline"`
 }
 
 type NginxOptions struct {

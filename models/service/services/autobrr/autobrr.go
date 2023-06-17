@@ -9,7 +9,7 @@ import (
 
 type Autobrr struct {
 	service.Service `yaml:",inline"`
-	AutobrrOptions   `yaml:",inline"`
+	AutobrrOptions  `yaml:",inline"`
 }
 
 type AutobrrOptions struct {

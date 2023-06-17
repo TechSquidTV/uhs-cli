@@ -9,7 +9,7 @@ import (
 
 type Sabnzbd struct {
 	service.Service `yaml:",inline"`
-	SabnzbdOptions   `yaml:",inline"`
+	SabnzbdOptions  `yaml:",inline"`
 }
 
 type SabnzbdOptions struct {

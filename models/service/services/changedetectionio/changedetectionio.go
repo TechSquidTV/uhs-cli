@@ -8,7 +8,7 @@ import (
 )
 
 type Changedetectionio struct {
-	service.Service         `yaml:",inline"`
+	service.Service          `yaml:",inline"`
 	ChangedetectionioOptions `yaml:",inline"`
 }
 

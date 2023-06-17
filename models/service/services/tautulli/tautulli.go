@@ -9,7 +9,7 @@ import (
 
 type Tautulli struct {
 	service.Service `yaml:",inline"`
-	TautulliOptions  `yaml:",inline"`
+	TautulliOptions `yaml:",inline"`
 }
 
 type TautulliOptions struct {

@@ -8,7 +8,7 @@ import (
 )
 
 type Qbittorrent struct {
-	service.Service   `yaml:",inline"`
+	service.Service    `yaml:",inline"`
 	QbittorrentOptions `yaml:",inline"`
 }
 

@@ -8,7 +8,7 @@ import (
 )
 
 type Overseerr struct {
-	service.Service `yaml:",inline"`
+	service.Service  `yaml:",inline"`
 	OverseerrOptions `yaml:",inline"`
 }
 

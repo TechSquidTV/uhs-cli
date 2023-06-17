@@ -9,7 +9,7 @@ import (
 
 type Huginn struct {
 	service.Service `yaml:",inline"`
-	HuginnOptions    `yaml:",inline"`
+	HuginnOptions   `yaml:",inline"`
 }
 
 type HuginnOptions struct {

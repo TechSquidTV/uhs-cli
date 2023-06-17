@@ -8,7 +8,7 @@ import (
 )
 
 type Cloudflared struct {
-	service.Service   `yaml:",inline"`
+	service.Service    `yaml:",inline"`
 	CloudflaredOptions `yaml:",inline"`
 }
 

@@ -9,7 +9,7 @@ import (
 
 type Sonarr struct {
 	service.Service `yaml:",inline"`
-	SonarrOptions    `yaml:",inline"`
+	SonarrOptions   `yaml:",inline"`
 }
 
 type SonarrOptions struct {

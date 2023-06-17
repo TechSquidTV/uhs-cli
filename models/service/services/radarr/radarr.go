@@ -9,7 +9,7 @@ import (
 
 type Radarr struct {
 	service.Service `yaml:",inline"`
-	RadarrOptions    `yaml:",inline"`
+	RadarrOptions   `yaml:",inline"`
 }
 
 type RadarrOptions struct {

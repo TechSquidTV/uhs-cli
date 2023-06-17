@@ -9,7 +9,7 @@ import (
 
 type Kavita struct {
 	service.Service `yaml:",inline"`
-	KavitaOptions    `yaml:",inline"`
+	KavitaOptions   `yaml:",inline"`
 }
 
 type KavitaOptions struct {

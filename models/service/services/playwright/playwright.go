@@ -8,7 +8,7 @@ import (
 )
 
 type Playwright struct {
-	service.Service  `yaml:",inline"`
+	service.Service   `yaml:",inline"`
 	PlaywrightOptions `yaml:",inline"`
 }
 

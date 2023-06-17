@@ -2,8 +2,8 @@ package common
 
 import (
 	"github.com/stretchr/testify/assert"
-	"github.com/techsquidtv/uhs-cli/models/config"
 	configCommon "github.com/techsquidtv/uhs-cli/models/common"
+	"github.com/techsquidtv/uhs-cli/models/config"
 	"github.com/techsquidtv/uhs-cli/models/service"
 	"github.com/techsquidtv/uhs-cli/models/service/servicemap"
 	"gopkg.in/yaml.v3"

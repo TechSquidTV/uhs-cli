@@ -9,7 +9,7 @@ import (
 
 type Prowlarr struct {
 	service.Service `yaml:",inline"`
-	ProwlarrOptions  `yaml:",inline"`
+	ProwlarrOptions `yaml:",inline"`
 }
 
 type ProwlarrOptions struct {

@@ -9,7 +9,7 @@ import (
 
 type Jellyfin struct {
 	service.Service `yaml:",inline"`
-	JellyfinOptions  `yaml:",inline"`
+	JellyfinOptions `yaml:",inline"`
 }
 
 type JellyfinOptions struct {

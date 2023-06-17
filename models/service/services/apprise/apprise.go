@@ -9,7 +9,7 @@ import (
 
 type Apprise struct {
 	service.Service `yaml:",inline"`
-	AppriseOptions   `yaml:",inline"`
+	AppriseOptions  `yaml:",inline"`
 }
 
 type AppriseOptions struct {
