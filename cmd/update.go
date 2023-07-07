@@ -11,36 +11,42 @@ import (
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
 	"github.com/techsquidtv/uhs-cli/cmd/shared"
-	"github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config"
 	"github.com/techsquidtv/uhs-cli/models/service/servicemap"
 )
 
-// Return each key from the default config map
-var serviceNames = servicemap.Keys(servicemap.Registered)
-
-// configureCmd represents the configure command
-var configureCmd = &cobra.Command{
-	Use:       "configure",
-	Short:     "Configure your UHS instance",
-	Long:      `Customize and configure your desired services for your UHS instance.`,
+// updateCmd represents the update command
+var updateCmd = &cobra.Command{
+	Use:       "update",
+	Short:     "Update your UHS instance configuration",
+	Long:      `Customize and update your desired services for your UHS instance.`,
 	ValidArgs: serviceNames,
 	Run: func(cmd *cobra.Command, args []string) {
-		// Create a new instance of the UHSConfig struct
+		// Validate files were provided
+		inputFile, err := cmd.Flags().GetString("input")
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		outputFile, err := cmd.Flags().GetString("output")
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		var cfg config.Config
+		cfg.Services = make(config.ServicesConfig)
+		shared.Input(inputFile, &cfg)
+
 		var selectedServices []string
 		if len(args) > 0 {
 			selectedServices = args
 		}
-		uhsConfig := config.Config{
-			Common:   common.New(),
-			Services: make(config.ServicesConfig),
-		}
 		sort.Strings(serviceNames)
 
 		if len(selectedServices) == 0 {
-			// Prompt user to select services to enable
+			// Prompt user to select services to update
 			serviceSelectPrompt := &survey.MultiSelect{
-				Message: "Select services to enable:",
+				Message: "Select services to modify. If a selected service wasn't present in the input config, it will be added:",
 				Options: serviceNames,
 			}
 			err := survey.AskOne(serviceSelectPrompt, &selectedServices)
@@ -51,24 +57,21 @@ var configureCmd = &cobra.Command{
 		}
 		// Validate selected services
 		if len(selectedServices) == 0 {
-			fmt.Println("No services selected. Exiting...")
+			fmt.Println("No services selected to update. Exiting...")
 			os.Exit(0)
-		}
-		serviceListString := ""
-		for _, service := range selectedServices {
-			serviceListString += fmt.Sprintf("  - %v\n", service)
 		}
 
 		validateSelectionPrompt := &survey.Confirm{
-			Message: fmt.Sprintf("You have selected the following services:\n%v\n Is this correct?", serviceListString),
+			Message: fmt.Sprintf("You have selected the following services:\n%v\n Is this correct?", selectedServices),
 		}
 		var validateSelection bool
-		err := survey.AskOne(validateSelectionPrompt, &validateSelection)
+		err = survey.AskOne(validateSelectionPrompt, &validateSelection)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
 		// If selection is not valid, exit
+		// TODO: Make this flow better. Have user go through selection process again.
 		if !validateSelection {
 			fmt.Println("Exiting...")
 			os.Exit(0)
@@ -76,18 +79,13 @@ var configureCmd = &cobra.Command{
 		}
 		// Execute configuration for each selected service
 		for _, serviceName := range selectedServices {
-			fmt.Println("Configuring " + serviceName + "...")
+			fmt.Println("Updating " + serviceName + "...")
 			service := servicemap.Registered[serviceName]()
 			service.Configure()
-			uhsConfig.Services[serviceName] = service
+			cfg.Services[serviceName] = service
 		}
-		// Output
-		outputFile, err := cmd.Flags().GetString("output")
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
-		err = shared.Output(outputFile, &uhsConfig)
+
+		err = shared.Output(outputFile, &cfg)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -96,16 +94,17 @@ var configureCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(configureCmd)
-	configureCmd.PersistentFlags().StringP("output", "o", "", "Output file path")
+	rootCmd.AddCommand(updateCmd)
+	updateCmd.PersistentFlags().StringP("output", "o", "", "Output file path")
+	updateCmd.PersistentFlags().StringP("input", "i", "", "Input file path")
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// configureCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// updateCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// configureCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// updateCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
