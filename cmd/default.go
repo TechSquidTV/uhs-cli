@@ -7,10 +7,10 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-	"github.com/techsquidtv/uhs-cli/cmd/common"
-	configCommon "github.com/techsquidtv/uhs-cli/models/common"
+	"github.com/techsquidtv/uhs-cli/cmd/shared"
+	"github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config"
-	"github.com/techsquidtv/uhs-cli/models/service"
+	"github.com/techsquidtv/uhs-cli/models/service/servicemap"
 )
 
 // defaultCmd represents the default command
@@ -21,13 +21,13 @@ var defaultCmd = &cobra.Command{
 		This will output the default configuration file, meant to be overwritten manually of via the configure command.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		uhsConfig := config.Config{
-			Common:   new(configCommon.Common).Default(),
-			Services: make(service.ServicesConfig),
+			Common:   common.New(),
+			Services: make(config.ServicesConfig),
 		}
 
 		// Set services to default
-		for k, v := range config.DefaultServiceConfig() {
-			uhsConfig.Services[k] = v
+		for k, v := range servicemap.Registered {
+			uhsConfig.Services[k] = v()
 		}
 		// Output
 		outputFile, err := cmd.Flags().GetString("output")
@@ -35,7 +35,7 @@ var defaultCmd = &cobra.Command{
 			fmt.Println(err.Error())
 			return
 		}
-		err = common.Output(outputFile, &uhsConfig)
+		err = shared.Output(outputFile, &uhsConfig)
 		if err != nil {
 			fmt.Println(err.Error())
 			return

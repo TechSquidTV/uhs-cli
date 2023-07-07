@@ -20,10 +20,3 @@ type Service struct {
 	Image        Image `yaml:"image"`
 	Ports        Ports `yaml:"ports,omitempty"`
 }
-
-type ServiceInterface interface {
-	Default() ServiceInterface
-	Configure() ServiceInterface
-}
-
-type ServicesConfig map[string]ServiceInterface
