@@ -2,3 +2,4 @@
 secrets.y*
 values.y*
 dist/
+.DS_Store
