@@ -35,8 +35,11 @@ var updateCmd = &cobra.Command{
 		}
 		var cfg config.Config
 		cfg.Services = make(config.ServicesConfig)
-		shared.Input(inputFile, &cfg)
-
+		err = shared.Input(inputFile, &cfg)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
 		var selectedServices []string
 		if len(args) > 0 {
 			selectedServices = args
