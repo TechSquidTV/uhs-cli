@@ -11,8 +11,8 @@ import (
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/spf13/cobra"
 	"github.com/techsquidtv/uhs-cli/cmd/shared"
-	"github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config"
+	"github.com/techsquidtv/uhs-cli/models/global"
 	"github.com/techsquidtv/uhs-cli/models/service/servicemap"
 )
 
@@ -32,7 +32,7 @@ var configureCmd = &cobra.Command{
 			selectedServices = args
 		}
 		uhsConfig := config.Config{
-			Common:   common.New(),
+			Global:   global.NewGlobal(),
 			Services: make(config.ServicesConfig),
 		}
 		sort.Strings(serviceNames)
