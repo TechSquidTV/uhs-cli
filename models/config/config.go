@@ -3,15 +3,14 @@ package config
 import (
 	"fmt"
 
-	"github.com/techsquidtv/uhs-cli/models/common"
 	"github.com/techsquidtv/uhs-cli/models/config/manager"
 	"github.com/techsquidtv/uhs-cli/models/service/servicemap"
 	"gopkg.in/yaml.v3"
 )
 
 type Config struct {
-	Common   *common.Common `yaml:"common,omitempty"`
-	Services ServicesConfig `yaml:"services"`
+	Global   manager.Configurer `yaml:"global,omitempty"`
+	Services ServicesConfig     `yaml:"services"`
 }
 
 type ServicesConfig map[string]manager.Configurer
