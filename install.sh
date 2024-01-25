@@ -35,5 +35,5 @@ echo "Run 'uhs --help' to get started"
 echo 
 # Check if the binary is in your PATH
 if ! command -v uhs &> /dev/null; then
-  echo "${RED}[WARNING]${NC} uhs could not be found in your PATH. Please add '~\${HOME}/.local/bin/' to your PATH."
+  echo "${RED}[WARNING]${NC} uhs could not be found in your PATH. Please add '\${HOME}/.local/bin/' to your PATH."
 fi
